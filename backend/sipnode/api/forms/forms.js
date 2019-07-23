@@ -11,7 +11,7 @@ router.post('', (req, res) => {
     model.dVoted = false
     model.uVoted = false
     model.noComments = 0
-    // logic for upvotes and downvotes
+   /* // logic for upvotes and downvotes
     if(model.uVoted)
     {
         return model.upVotes + 1;
@@ -20,7 +20,7 @@ router.post('', (req, res) => {
     {
         return model.downVotes + 1;
     }  
-    // logic for upvotes and downvotes ends
+    // logic for upvotes and downvotes ends*/
     model.save()
         .then(doc => {
             console.log(model.createdAt)
