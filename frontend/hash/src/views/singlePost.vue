@@ -216,8 +216,16 @@ export default {
         this.post.upVotes = this.post.upVotes - 1;
         this.post.uVoted = !this.post.uVoted;
       } else {
+        if(this.post.dVoted = !this.post.dVoted)
+        {
+        this.post.downVotes = this.downVotes - 1;
         this.post.upVotes = this.post.upVotes + 1;
         this.post.uVoted = !this.post.uVoted;
+        }
+        else{
+        this.post.upVotes = this.post.upVotes + 1;
+        this.post.uVoted = !this.post.uVoted;
+        }
       }
     },
     downVoteInc() {
@@ -225,9 +233,18 @@ export default {
         this.post.downVotes = this.post.downVotes - 1;
         this.post.dVoted = !this.post.dVoted;
       } else {
+        if(this.post.uVoted = !this.post.uVoted)
+        {
+        this.post.upVotes = this.upVotes - 1;
         this.post.downVotes = this.post.downVotes + 1;
         this.post.dVoted = !this.post.dVoted;
+        }
+        else{
+        this.post.downVotes = this.post.downVotes + 1;
+        this.post.dVoted = !this.post.dVoted;
+        }
       }
+      //logic for upvote downvote ends
     },
     observe(el, event, handler) {
       if (window.attachEvent) {
