@@ -57,7 +57,7 @@
 
             <div class="feed">
 
-                <div class="fCard elevation-1" :key="sPost.Id in posts" v-for="sPost in posts">
+                <div class="fCard " :key="sPost.Id in posts" v-for="sPost in posts">
                     <div class="fCardHeader">
                     <p class="fCardHeaderTitle">By <strong style="margin-left: 15px;">{{sPost.postedBy}}</strong> </p>
                     <p class="fCardHeaderSub">{{sPost.subForum}}</p>

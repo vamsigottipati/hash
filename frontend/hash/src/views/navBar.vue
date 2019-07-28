@@ -1,40 +1,36 @@
 <template>
-  <div class="navBody">
-    <div class="top-nav elevation-5">
-      <div @click="$router.push('/home')" class="logo" style="display: flex;cursor: pointer;margin-left: 0px">
-        <img src="../assets/icons/flash.svg" style="cursor: pointer;width: 20px; height : 20px;margin-top: 2px"  alt="">
+  <div class="navBody" style="background: #37323E;">
+    <div class="top-nav">
+      <div @click="$router.push('/home')" class="logo" style="display: flex;cursor: pointer;margin-left: 0px;">
+        <img src="../assets/icons/logo_white.svg" style="cursor: pointer;width: 20px; height : 20px;margin-top: 2px"  alt="">
         <div class="logo_text" style="margin-left: 30px;align-self: center">
-          <p  style="font-size: 20px;font-weight: 600;cursor: pointer; margin: auto;"> Hash</p>
+          <p  style="font-size: 20px;font-weight: 600;cursor: pointer; margin: auto;color: white;"> Hash</p>
           <!-- <p style="flex:1;font-size: 14px;font-weight: 100;transform: translateY(-15px);cursor: pointer;"> A BITSian Initiative </p> -->
         </div>
       </div>
-      <div class="searchBar" v-if="this.homeRoute"></div>
-      <div class="spacer"></div>
-      <div class="searchBar" v-if="!this.homeRoute"></div>
-      <div style="flex: 1;" data-tooltip='Profile' class="navIcontCont" @click="$router.push('/profile')">
-        <img class="navIcon" src="../assets/icons/person-outline.svg" alt="">
+      <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 30px;margin-left: auto;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Profile' class="navIcontCont" @click="$router.push('/profile')">
+        <img style="" class="navIcon" src="../assets/icons/person-outline.svg" alt="">
       </div>
-      <div style="flex: 1;" data-tooltip='Messages' class="navIcontCont" @click="$router.push('/messages')">
+      <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 50px;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Messages' class="navIcontCont" @click="$router.push('/messages')">
         <img class="navIcon" src="../assets/icons/message-square-outline.svg" alt="">
       </div>
-      <div style="flex: 1;" data-tooltip='Code' class="navIcontCont" @click="$router.push('/code')">
+      <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 50px;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Code' class="navIcontCont" @click="$router.push('/code')">
         <img class="navIcon" src="../assets/icons/code-outline.svg" alt="">
       </div>
-      <div style="flex: 1;" data-tooltip='Coolab Mode' class="navIcontCont" @click="$router.push('/collab')">
+      <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 50px;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Coolab Mode' class="navIcontCont" @click="$router.push('/collab')">
         <img class="navIcon" src="../assets/icons/radio-outline.svg" alt="">
       </div>
-      <div style="flex: 1;" data-tooltip='Showcase' class="navIcontCont" @click="$router.push('/showcase')">
+      <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 50px;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Showcase' class="navIcontCont" @click="$router.push('/showcase')">
         <img class="navIcon" src="../assets/icons/npm-outline.svg" alt="">
       </div>
-      <div style="flex: 1;" data-tooltip='Logout' class="navIcontCont" @click="this.logout">
+      <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 50px;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Logout' class="navIcontCont" @click="this.logout">
         <img class="navIcon" src="../assets/icons/power-outline.svg" alt="">
       </div>
-      <div style="flex: 1;" data-tooltip=' Toggle Menu' class="navIcontCont"  @click="toggleDisplay">
+      <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 50px;display: flex; flex-direction: column;justify-content: center;" data-tooltip=' Toggle Menu' class="navIcontCont"  @click="toggleDisplay">
         <img class="hiddenNavIcon" src="../assets/icons/menu.svg" alt="">
       </div>
-      <div class="miniSpacer" style="flex: 1;"></div>
     </div>
-    <div class="rightSideBar elevation-3" v-if="this.openRSb" ref="rightSidebar">
+    <div class="rightSideBar" v-if="this.openRSb" ref="rightSidebar">
       <span class="navIconMobCont" @click="$router.push('/profile')">
           <i class="material-icons navIconMob"  style="flex: 1;color: #44AF69;">person</i>
           <p class="navIconMobText" style="color: white;">Profile</p>
@@ -111,7 +107,7 @@ export default {
 <style scoped>
   .top-nav {
     position: fixed;
-    background: #eeeeee;
+    background: #37323E;
     top: 0px;
     left: 0px;
     height: 8%;

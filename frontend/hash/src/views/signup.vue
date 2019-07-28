@@ -19,7 +19,6 @@
         class="btn btn-signup"
         @mouseover="isHovering = true"
         @mouseout="isHovering = false"
-        :class="{'elevation-15': !isHovering}"
         @click.prevent="signup"
       >signup</button>
       <br>
@@ -66,7 +65,7 @@ export default {
                 displayName: vm.name
               });
               vm.$http
-                .post("http://172.16.108.14:8080/api/user/", {
+                .post("http://localhost:8080/api/user/", {
                   id: firebase.auth().currentUser.uid,
                   email: vm.email,
                   username: vm.name,

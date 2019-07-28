@@ -1,6 +1,5 @@
 <template>
   <div id="app" ref="app">
-    <!-- <div class="snackbar elevation-24" ref="snackbar">{{this.notificationMessage}}</div> -->
     <router-view/>
   </div>
 </template>
@@ -38,7 +37,7 @@ export default {
   name: "app",
   data() {
     return {
-      socket: io("http://172.16.108.14:8080/"),
+      socket: io("http://localhost:8080/"),
       notificationMessage: "New Post From subform  - "
     };
   },
@@ -63,7 +62,6 @@ export default {
         temp.style.zIndex = "999";
         temp.style.borderRadius = "10px";
         temp.style.transition = "1s";
-        temp.classList.add("elevation-24");
         temp.setAttribute("id", "snackbarCont");
         temp.innerHTML = `
         <div ref="snackbar" style="display: flex;flex-direction: row;">

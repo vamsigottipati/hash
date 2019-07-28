@@ -1,7 +1,7 @@
 {
-  "name": "sip_backend",
+  "name": "hash",
   "version": "1.0.0",
-  "description": "sip backend",
+  "description": "Hash backend",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index",

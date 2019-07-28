@@ -34,7 +34,7 @@
     </div>
     <div class="main">
       <post style="height: auto;"/>
-      <div class="fCard elevation-1" :key="`${index}`" v-for="(sPost, index) in posts">
+      <div class="fCard" :key="`${index}`" v-for="(sPost, index) in posts">
         <div class="fCardHeader">
           <p class="fCardHeaderTitle">
             By
@@ -110,7 +110,6 @@
           class="cardBtn"
           @mouseover="isHovering1 = true"
           @mouseout="isHovering1 = false"
-          :class="{'elevation-5': isHovering1}"
         >Visit The Contest</button>
       </div>
       <div class="card">
@@ -123,7 +122,6 @@
           class="cardBtn"
           @mouseover="isHovering2 = true"
           @mouseout="isHovering2 = false"
-          :class="{'elevation-5': isHovering2}"
         >Visit The Contest</button>
       </div>
     </div>
@@ -192,7 +190,7 @@ export default {
     getData() {
       var vm = this;
       this.$http
-        .get("http://172.16.108.14:8080/api/forms/")
+        .get("http://localhost:8080/api/forms/")
         .then(resp => {
           console.log(resp);
           this.posts = resp.body;
@@ -215,7 +213,7 @@ export default {
         this.posts[u].upVotes = this.posts[u].upVotes - 1;
         this.posts[u].uVoted = !this.posts[u].uVoted;
         this.$http
-          .get("http://172.16.108.14:8080/api/forms/" + i)
+          .get("http://localhost:8080/api/forms/" + i)
           .then(resp => {
             console.log(resp);
           })
@@ -226,7 +224,7 @@ export default {
         this.posts[u].upVotes = this.posts[u].upVotes + 1;
         this.posts[u].uVoted = !this.posts[u].uVoted;
         this.$http
-          .get("http://172.16.108.14:8080/api/forms/" + i)
+          .get("http://localhost:8080/api/forms/" + i)
           .then(resp => {
             console.log(resp);
           })

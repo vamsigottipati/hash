@@ -2,7 +2,7 @@
   <div ref="el" style="transition: 1s;" class="pageBody">
     <div class="loader"></div>
     <navBar/>
-    <div ref="delModal" class="deleteModal elevation-24">
+    <div ref="delModal" class="deleteModal">
       <i class="far fa-times-circle" @click="this.closeDelModal"></i>
       <div style="flex:2"></div>
       <p>Do You Want To delete The Post</p>
@@ -18,7 +18,7 @@
     <div ref="rSideBar" class="rSidebar"></div>
     <div ref="mainCont" class="mainCont">
       <div class="postBodyCont">
-        <div class="fCard elevation-1">
+        <div class="fCard ">
           <div class="fCardHeader">
             <p class="fCardHeaderTitle">
               By
@@ -80,7 +80,7 @@
           <!-- <hr class="fCardHr"> -->
         </div>
       </div>
-      <div class="bottomSection elevation-0">
+      <div class="bottomSection ">
         <div class="commentCont" :key="`${index}`" v-for="(singleComment, index) in this.comments">
           <div class="commentSelfCont" v-if="singleComment.senderId === yourId">
             <div class="commentPImg"></div>
@@ -197,7 +197,7 @@ export default {
     getData() {
       var vm = this;
       this.$http
-        .get("http://172.16.108.14:8080/api/forms/" + vm.postId + "/")
+        .get("http://localhost:8080/api/forms/" + vm.postId + "/")
         .then(resp => {
           console.log(resp.body);
           vm.post = resp.body[0];
@@ -279,7 +279,7 @@ export default {
     },
     deletePost() {
       this.$http
-        .delete("http://172.16.108.14:8080/api/forms/" + this.postId + "/")
+        .delete("http://localhost:8080/api/forms/" + this.postId + "/")
         .then(resp => {
           console.log(resp);
           window.location.pathname = "/";

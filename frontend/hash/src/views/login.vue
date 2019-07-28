@@ -4,7 +4,7 @@
                 <h1 class="heading"> Login Using Your Bits Mail </h1>
                 <input type="email" v-model="email" placeholder="EMAIL" class="email"> <br>
                 <input type="password" v-model="password" placeholder="PASSWORD" class="password"> <br>
-                <button class="btn btn-login" @mouseover="isHovering = true" @mouseout="isHovering = false" :class="{'elevation-15': !isHovering}" @click="login">Login</button> <br>
+                <button class="btn btn-login" @mouseover="isHovering = true" @mouseout="isHovering = false" @click="login">Login</button> <br>
                 <a @click.prevent="$router.push('signup')" class="link">Create a Account</a>
             </div>
             <div class="side-screen">

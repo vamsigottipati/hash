@@ -1,11 +1,11 @@
 <template>
   <div class="msgPageBody" ref="pageBody">
     <navBar/>
-    <div ref="fileModal" class="dropDownModal elevation-24">
+    <div ref="fileModal" class="dropDownModal">
       <i @click="closeFileModal" class="material-icons modalCloseBtn">highlight_off</i>
       <p>File Upload Modal</p>
     </div>
-    <div ref="emogiModal" class="dropDownModal elevation-24">
+    <div ref="emogiModal" class="dropDownModal">
       <i @click="closeEmojiModal" class="material-icons modalCloseBtn">highlight_off</i>
       <p>Emoji Upload Modal</p>
     </div>
@@ -16,9 +16,9 @@
             type="text"
             style="transition: 0.5s"
             placeholder="Search"
-            class="fListSearch elevation-15"
+            class="fListSearch"
           >
-          <button class="fListSearchBtn elevation-15" style="transition: 0.5s">
+          <button class="fListSearchBtn" style="transition: 0.5s">
             <i class="bx bx-search-alt"></i>
           </button>
         </div>
@@ -34,12 +34,11 @@
       <div class="mainSection">
         <p
           style="position: relative; padding: 40px;font-size: 16px; background: #eee;border-radius: 10px;font-weight: 600;word-spacing: 10px;width: 60%;margin-left: 20%;margin-top: 30%;"
-          class="elevation-10"
           v-if="!this.userSelected"
         >Click On A User To get the messages</p>
         <div class="chatHeader" v-if="!this.chatLoading && this.userSelected">
           <div
-            class="ChatHeadImg elevation-2"
+            class="ChatHeadImg"
             style="width: 5vh; height: 5vh; background: grey;margin-top: 1.5vh;margin-left: 20px;float: left;border-radius: 50%;"
           ></div>
           <div style="float: right; width: 85%;display: flex;">
@@ -187,7 +186,7 @@ export default {
     },
     setData() {
       var vm = this;
-      this.$http.get("http://172.16.108.14:8080/api/user").then(usersResp => {
+      this.$http.get("http://localhost:8080/api/user").then(usersResp => {
         console.log(usersResp);
         var temp2 = usersResp.body;
         vm.fList = temp2;
@@ -202,7 +201,7 @@ export default {
       var x = a > e ? a + e : e + a;
       vm.threadId = x;
       this.$http
-        .get("http://172.16.108.14:8080/api/chat/" + x)
+        .get("http://localhost:8080/api/chat/" + x)
         .then(Response => {
           vm.chatMsg = Response.body;
           vm.chatLoading = false;

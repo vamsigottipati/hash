@@ -110,9 +110,9 @@
 }
 .postHeader p {
   font-size: 15px;
-  padding-top: 15px;
-  padding-left: 20px;
+  padding: 15px;
   flex: 10;
+  align-self: center;
 }
 .postHeader img {
   flex: 1;
@@ -376,7 +376,6 @@ export default {
       if (this.textClickCounter % 2 == 0) {
         /* this.$refs.showForumSelection.style.display = 'none'
                 this.$refs.postSubmitBtn.style.display = 'none'
-                this.$refs.postBody.classList.remove('elevation-24')
                 this.$refs.postBody.style.width = '80%'
                 this.$refs.postBody.style.marginLeft = '10%' */
         if (window.innerWidth <= "498") {
@@ -388,12 +387,10 @@ export default {
         }
         this.$refs.showForumSelection.style.display = "block";
         this.$refs.postSubmitBtn.style.display = "block";
-        this.$refs.postBody.classList.add("elevation-24");
         this.$refs.closeIcon.style.display = "block";
       } else {
         this.$refs.showForumSelection.style.display = "block";
         this.$refs.postSubmitBtn.style.display = "block";
-        this.$refs.postBody.classList.add("elevation-24");
         if (window.innerWidth <= "498") {
           this.$refs.postBody.style.width = "100%";
           this.$refs.postBody.style.marginLeft = "0%";
@@ -409,7 +406,6 @@ export default {
       this.$refs.showForumSelection.style.display = "none";
       this.$refs.postSubmitBtn.style.display = "none";
       this.textClickCounter = 0;
-      this.$refs.postBody.classList.remove("elevation-24");
       if (window.innerWidth <= "498") {
         this.$refs.postBody.style.width = "100%";
         this.$refs.postBody.style.marginLeft = "0%";
