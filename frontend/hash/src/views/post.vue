@@ -95,7 +95,7 @@
   margin-top: 5vh;
   margin-bottom: 5vh;
   height: auto;
-  background: #37323e;
+  background: #37323E;
   border-radius: 5px;
   transition: 0.2s;
 }
@@ -210,13 +210,13 @@ textarea:focus {
   width: 10px;
   height: 10px;
   /* border-radius: 50%; */
-  background: #37323e;
+  background: #37323E;
 }
 
 .tagBtn {
   all: unset;
   text-align: center;
-  background: #eeeeee;
+  background: #f1f1f1;
   padding: 12px;
   border-radius: 1000px;
   margin-top: 20px;
@@ -246,7 +246,7 @@ textarea:focus {
 
 .postSubmitBtn {
   all: unset;
-  color: #37323e;
+  color: #37323E;
   background: #eee;
   border-radius: 5px;
   width: 30%;

@@ -113,12 +113,12 @@ export default {
 }
 
 input {
-  color: #37323e;
+  color: #37323E;
 }
 
 .heading {
   position: relative;
-  color: #37323e;
+  color: #37323E;
   margin-top: 15vh;
   margin-bottom: 10vh;
   text-align: center;
@@ -142,7 +142,7 @@ input {
   width: 50vw;
   text-align: center;
   /* background:linear-gradient(45deg,deeppink, #37323E ); */
-  background: #37323e;
+  background: #37323E;
 }
 
 .side-screen h1 {
@@ -193,7 +193,7 @@ input {
   color: white;
   height: 6.5%;
   width: 10%;
-  background: #37323e;
+  background: #37323E;
   border-radius: 3px;
   position: relative;
   align-content: center;
@@ -236,13 +236,13 @@ input {
   transition: 0.5s;
 }
 .link:hover {
-  color: #37323e;
+  color: #37323E;
   cursor: pointer;
 }
 .link:hover:after {
   left: -5%;
   width: 110%;
-  background: #37323e;
+  background: #37323E;
 }
 
 @media screen and (min-width: 1000px) {

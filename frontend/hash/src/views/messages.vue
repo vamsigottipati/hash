@@ -23,7 +23,7 @@
           </button>
         </div>
         <div class="friendList" :key="singleF.id" v-for="singleF in fList">
-          <div class="sFriend" @click="openChat(singleF.id)">
+          <div class="sFriend" @click="openChat(singleF.id, singleF.username)">
             <img src class="sFriendImg" alt>
             <p class="sFriendName">{{singleF.username}}</p>
             <br>
@@ -33,26 +33,23 @@
       </div>
       <div class="mainSection">
         <p
-          style="position: relative; padding: 40px;font-size: 16px; background: #eee;border-radius: 10px;font-weight: 600;word-spacing: 10px;width: 60%;margin-left: 20%;margin-top: 30%;"
+          style="position: relative; padding: 40px;font-size: 16px; background: #f1f1f1;border-radius: 10px;font-weight: 600;word-spacing: 10px;width: 60%;margin-left: 20%;margin-top: 30%;"
           v-if="!this.userSelected"
         >Click On A User To get the messages</p>
-        <div class="chatHeader" v-if="!this.chatLoading && this.userSelected">
+        <div class="chatHeader" style="display: flex; flex-direction: row;" v-if="!this.chatLoading && this.userSelected">
           <div
             class="ChatHeadImg"
-            style="width: 5vh; height: 5vh; background: grey;margin-top: 1.5vh;margin-left: 20px;float: left;border-radius: 50%;"
+            style="width: 4vh; height: 4vh; background: grey;margin-left: 20px;float: left;border-radius: 50%;align-self: center;"
           ></div>
-          <div style="float: right; width: 85%;display: flex;">
-            <div style="flex: 5;text-align: left;float: left;">
+          <div style="display: flex;flex-direction: column;align-self: center;justify-content: center;  ">
               <p
-                style="font-size: 18px;font-weight: 600;transform: translateY(12px)"
+                style="font-size: 18px;font-weight: 600;align-self: center;margin-left: 40px;"
                 class="chatHeadPersonName"
-              >{{ this.currentChatHead }}</p>
+              >{{ this.currentChatHead.username }}</p>
               <p
-                style="font-size: 12px;font-weight: 250;transform: translateY(3px)"
+                style="font-size: 12px;font-weight: 250;align-self: center;margin-left: 42px;"
                 class="chatHeadLastSeen"
-              >{{ this.currentChatHead }}</p>
-            </div>
-            <!-- <p style="flex: 2;" class="chatHeadLastText"> {{ this.currentChatHead.lastText }} </p> -->
+              >Last Seen</p>
           </div>
         </div>
         <div class="chatLoader" v-if="this.chatLoading && this.userSelected">
@@ -118,22 +115,22 @@
               style="align-self: flex-end;height: auto;color: white;background: grey;padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;max-width: 45%;text-align: left;"
               v-if="singleChat.senderId == yourId"
             >
-              <p v-if="singleChat.text" style="transform: translateY(5px)">{{ singleChat.text }}</p>
+              <p v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;" >{{ singleChat.text }}</p>
             </div>
-            <img :src="singleChat.img" v-if="singleChat.img && singleChat.senderId == yourId" alt>
+            <img :src="singleChat.img" v-if="singleChat.img != 'null' && singleChat.senderId == yourId" alt>
             <div
               class="otherMsg"
-              style="align-self: flex-start;height: auto;color: #2c3e50;background: #ddd;padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;max-width: 45%;text-align: left;"
+              style="align-self: flex-start;height: auto;color: #37323E;background: #ddd;padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;max-width: 45%;text-align: left;"
               v-if="singleChat.senderId != yourId"
             >
-              <p v-if="singleChat.text" style="transform: translateY(5px)">{{ singleChat.text }}</p>
+              <p v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;">{{ singleChat.text }}</p>
             </div>
-            <img :src="singleChat.img" style="margin-top:15px;" v-if="singleChat.img" alt>
+            <img v-if="singleChat.img != 'null' && singleChat.senderId != yourId" :src="singleChat.img" style="margin-top:15px;" alt>
           </div>
         </div>
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
           <i @click="openEmojiModal" class="material-icons chatInputIcon">insert_emoticon</i>
-          <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text" class="chatInputText">
+          <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text" style="text-align: left;padding-left:40px; padding-right: 40px;" class="chatInputText">
           <i class="material-icons chatInputIcon" @click="sendMsg">send</i>
           <i class="material-icons chatInputIcon" @click="openFileModal">attach_file</i>
         </div>
@@ -187,16 +184,15 @@ export default {
     setData() {
       var vm = this;
       this.$http.get("http://localhost:8080/api/user").then(usersResp => {
-        console.log(usersResp);
         var temp2 = usersResp.body;
         vm.fList = temp2;
       });
     },
-    openChat(e) {
+    openChat(e, username) {
       var vm = this;
+      vm.currentChatHead.username = username
       vm.chatLoading = true;
       vm.userSelected = true;
-      console.log(e);
       var a = this.yourId;
       var x = a > e ? a + e : e + a;
       vm.threadId = x;
@@ -211,7 +207,6 @@ export default {
       if (el.length > 0) {
         el[el.length - 1].scrollIntoView(false);
       }
-      console.log(x);
     },
     closeFileModal() {
       this.$refs.fileModal.style.display = "none";
@@ -226,7 +221,7 @@ export default {
       this.$refs.chatSection.style.opacity = "1";
     },
     sendMsg() {
-      if (this.chatInput) {
+      if (this.chatInput && this.chatInput != '\n') {
         EventBus.$emit("sendMessage", [
           this.chatInput,
           this.threadId,
@@ -255,13 +250,13 @@ export default {
   width: 100vw;
   height: 92vh;
   left: 0px;
-  background: #ddd;
+  background: #f1f1f1;
   transition: 0.5s;
 }
 .sidebar {
   position: fixed;
   width: 25vw;
-  background: #bbb;
+  background: #ddd;
   height: 92vh;
   overflow: auto;
   /* border-right: 1px solid grey; */
@@ -273,28 +268,30 @@ export default {
   height: 92vh;
   right: 0vw;
   top: 8vh;
-  background: #ddd;
+  background: #f1f1f1;
 }
 .chatHeader {
   position: relative;
   height: 8vh;
-  background: #ddd;
+  background: #f1f1f1;
   width: 100%;
 }
 .chatBody {
   position: relative;
   height: 74vh;
-  background: #eee;
+  background: #f1f1f1;
   width: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
 }
 .chatInput {
-  position: relative;
+  position: fixed;
   height: 8vh;
+  bottom: 0px;
+  right: 0px;
   background: #ddd;
-  width: 100%;
+  width: 75vw;
   z-index: 9;
   display: flex;
 }
@@ -361,7 +358,7 @@ svg {
   height: 50vh;
   right: 32.5vw;
   top: 25vh;
-  background: #37323e;
+  background: #37323E;
   z-index: 20;
   -webkit-animation: modalBoxEntrance 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     both;
@@ -401,7 +398,7 @@ svg {
   cursor: pointer;
   flex: 1;
   margin-right: 30px;
-  background: #37323e;
+  background: #37323E;
   color: white;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;

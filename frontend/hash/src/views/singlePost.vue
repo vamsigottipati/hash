@@ -360,7 +360,7 @@ input:focus {
   font-family: "Ubuntu";
 }
 .uDIcon {
-  color: #37323e;
+  color: #37323E;
 }
 .fCardHr {
   border: 0;
@@ -403,7 +403,7 @@ input:focus {
 
 .lSidebar {
   position: fixed;
-  background: #37323e;
+  background: #37323E;
   top: 8%;
   left: 0px;
   width: 15vw;
@@ -414,7 +414,7 @@ input:focus {
 }
 .rSidebar {
   position: fixed;
-  background: #37323e;
+  background: #37323E;
   top: 8%;
   right: 0px;
   width: 15vw;
@@ -451,7 +451,7 @@ input:focus {
   flex: 1;
   margin-left: 0px;
   height: 50px;
-  background: #37323e;
+  background: #37323E;
   color: white;
   border-radius: 5px;
   align-items: flex-end;
@@ -510,7 +510,7 @@ input:focus {
   height: 30vh;
   top: 25vh;
   left: 35vw;
-  background: #eeeeee;
+  background: #f1f1f1;
   z-index: 0;
   transition: 150ms;
   display: flex;

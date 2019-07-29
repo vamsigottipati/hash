@@ -350,7 +350,7 @@ export default {
   margin-left: 10%;
   background: #eeeff7;
   z-index: 999;
-  color: #37323e;
+  color: #37323E;
   height: 4vh;
   border-radius: 2px;
 }
@@ -359,7 +359,7 @@ export default {
   all: unset;
   width: 10%;
   color: rgb(10, 12, 75);
-  background: #37323e;
+  background: #37323E;
   height: 4vh;
   border-radius: 2px;
   transform: translateY(3px);
@@ -389,7 +389,7 @@ export default {
 
 .cardHeader {
   padding: 30px;
-  color: #37323e;
+  color: #37323E;
 }
 
 .cardBody {
@@ -399,7 +399,7 @@ export default {
 .cardBtn {
   padding: 15px 40px 15px 40px;
   margin: 30px;
-  background: #37323e;
+  background: #37323E;
   color: #eee;
   font-weight: 900;
   margin-bottom: 20px;
@@ -416,7 +416,7 @@ export default {
 
 .forums span h2 {
   padding: 20px;
-  color: #37323e;
+  color: #37323E;
 }
 
 .groups {
@@ -428,7 +428,7 @@ export default {
 
 .groups span h2 {
   padding: 20px;
-  color: #37323e;
+  color: #37323E;
 }
 
 .people {
@@ -500,7 +500,7 @@ export default {
   overflow: hidden;
 }
 .uDIcon {
-  color: #37323e;
+  color: #37323E;
 }
 .fCardHr {
   border: 0;
@@ -527,7 +527,7 @@ export default {
 .fullPostViewLink {
   margin-left: 45px;
   font-size: 15px;
-  color: #37323e;
+  color: #37323E;
   cursor: pointer;
   text-align: left;
   width: auto;

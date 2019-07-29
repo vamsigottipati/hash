@@ -9,7 +9,7 @@
         </div>
       </div>
       <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 30px;margin-left: auto;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Profile' class="navIcontCont" @click="$router.push('/profile')">
-        <img style="" class="navIcon" src="../assets/icons/person-outline.svg" alt="">
+        <img  class="navIcon" src="../assets/icons/person-outline.svg" alt="">
       </div>
       <div style="width: 40px; height: 40px; border-radius: 50%;margin-right: 50px;display: flex; flex-direction: column;justify-content: center;" data-tooltip='Messages' class="navIcontCont" @click="$router.push('/messages')">
         <img class="navIcon" src="../assets/icons/message-square-outline.svg" alt="">
@@ -135,7 +135,7 @@ export default {
   margin-left: -50px;
   top: 7vh;
 	padding: 20px;
-  background: #eeeeee;
+  background: #f1f1f1;
   border-radius: 10px;
   z-index: 999;
   -webkit-animation: bg-shadow 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -213,7 +213,7 @@ export default {
   }
   .searchContMob input{
     all: unset;
-    background: #eeeeee;
+    background: #f1f1f1;
     color: 222;
     height: 5.5vh;
     margin: 0px;

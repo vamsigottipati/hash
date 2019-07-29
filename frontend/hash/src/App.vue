@@ -12,7 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #37323E;
 }
 #nav {
   padding: 30px;
@@ -20,7 +20,7 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #37323E;
 }
 
 #nav a.router-link-exact-active {
@@ -56,7 +56,7 @@ export default {
         temp.style.position = "fixed";
         temp.style.bottom = "5vh";
         temp.style.left = "2vw";
-        temp.style.background = "#2c3e50";
+        temp.style.background = "#37323E";
         temp.style.width = "auto";
         temp.style.height = "auto";
         temp.style.zIndex = "999";
