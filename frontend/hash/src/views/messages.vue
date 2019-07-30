@@ -1,6 +1,7 @@
 <template>
   <div class="msgPageBody" ref="pageBody">
-    <navBar/>
+    <!-- <navBar/> -->
+
     <div ref="fileModal" class="dropDownModal">
       <i @click="closeFileModal" class="material-icons modalCloseBtn">highlight_off</i>
       <p>File Upload Modal</p>
@@ -36,18 +37,14 @@
           style="position: relative; padding: 40px;font-size: 16px; background: #f1f1f1;border-radius: 10px;font-weight: 600;word-spacing: 10px;width: 60%;margin-left: 20%;margin-top: 30%;"
           v-if="!this.userSelected"
         >Click On A User To get the messages</p>
-        <div class="chatHeader" style="display: flex; flex-direction: row;" v-if="!this.chatLoading && this.userSelected">
-          <div
-            class="ChatHeadImg"
-            style="width: 4vh; height: 4vh; background: grey;margin-left: 20px;float: left;border-radius: 50%;align-self: center;"
-          ></div>
+        <div class="chatHeader" style="display: flex; flex-direction: row;background: #37323E;" v-if="!this.chatLoading && this.userSelected">
           <div style="display: flex;flex-direction: column;align-self: center;justify-content: center;  ">
               <p
-                style="font-size: 18px;font-weight: 600;align-self: center;margin-left: 40px;"
+                style="font-size: 20px;font-weight: 600;align-self: center;margin-left: 40px;color: white"
                 class="chatHeadPersonName"
               >{{ this.currentChatHead.username }}</p>
               <p
-                style="font-size: 12px;font-weight: 250;align-self: center;margin-left: 42px;"
+                style="font-size: 12px;font-weight: 250;align-self: center;margin-left: 42px;line-height: 24px;color: white"
                 class="chatHeadLastSeen"
               >Last Seen</p>
           </div>
@@ -112,7 +109,7 @@
           >
             <div
               class="selfMsg"
-              style="align-self: flex-end;height: auto;color: white;background: grey;padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;max-width: 45%;text-align: left;"
+              style="align-self: flex-end;height: auto;color: white;background: rgb(55, 50, 62, 0.7);padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;max-width: 45%;text-align: left;"
               v-if="singleChat.senderId == yourId"
             >
               <p v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;" >{{ singleChat.text }}</p>
@@ -135,7 +132,9 @@
           <i class="material-icons chatInputIcon" @click="openFileModal">attach_file</i>
         </div>
       </div>
-      <div class="sidebarS"></div>
+    </div>
+    <div class="sidebarS">
+        <img src="../assets/icons/flash_white.png" style="width: 30px; height: 30px;align-self: center;margin: 0px; padding: 0px;margin-top: 5vh;cursor: pointer;" alt="">
     </div>
   </div>
 </template>
@@ -246,9 +245,9 @@ export default {
 }
 .chatSection {
   position: absolute;
-  top: 8%;
+  top: 0px;
   width: 100vw;
-  height: 92vh;
+  height: 100vh;
   left: 0px;
   background: #f1f1f1;
   transition: 0.5s;
@@ -257,43 +256,48 @@ export default {
   position: fixed;
   width: 25vw;
   background: #ddd;
-  height: 92vh;
+  height: 100vh;
   overflow: auto;
+  margin-left: 5vw;
   /* border-right: 1px solid grey; */
 }
 .mainSection {
   position: fixed;
   overflow: hidden;
-  width: 75vw;
-  height: 92vh;
+  width: 70vw;
+  height: 100vh;
   right: 0vw;
-  top: 8vh;
+  top: 0px;
   background: #f1f1f1;
 }
 .chatHeader {
   position: relative;
-  height: 8vh;
-  background: #f1f1f1;
+  height: 9vh;
   width: 100%;
+  z-index: 99;
+  -webkit-animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both !important;
+	        animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both !important;
 }
 .chatBody {
   position: relative;
-  height: 74vh;
+  height: 82vh;
   background: #f1f1f1;
   width: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
+  z-index: 9;
 }
 .chatInput {
   position: fixed;
   height: 8vh;
   bottom: 0px;
   right: 0px;
-  background: #ddd;
-  width: 75vw;
+  background: #f1f1f1;
+  width: 70vw;
   z-index: 9;
   display: flex;
+  box-shadow: 0 -12px 20px -12px rgba(0, 0, 0, 0.15)
 }
 hr {
   border: 0;
@@ -318,7 +322,7 @@ hr {
 .chatInputText {
   all: unset;
   height: 5vh;
-  background: #eee;
+  background: #ddd;
   flex: 8;
   margin-top: 1.5vh;
   border-radius: 100px;
@@ -444,6 +448,15 @@ svg {
   padding-top: 10px;
 }
 
+.sidebarS {
+  position: fixed;
+  width: 5vw;
+  height: 100vw; top: 0px; left: 0px;
+  background: #37323E;
+  display: flex;
+  flex-direction: column;
+}
+
 /*    Bounce In Animation     */
 
 @-webkit-keyframes modalBoxEntrance {
@@ -470,6 +483,24 @@ svg {
     opacity: 1;
   }
 }
+
+ @-webkit-keyframes shadow-drop-bottom {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.15);
+  }
+}
+@keyframes shadow-drop-bottom {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.15);
+  }
+}
+
 
 /* Media Queries */
 /* 
