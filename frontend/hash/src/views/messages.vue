@@ -1,4 +1,4 @@
-<template>
+has_img_messenger<template>
   <div class="msgPageBody" ref="pageBody">
     <!-- <navBar/> -->
 
