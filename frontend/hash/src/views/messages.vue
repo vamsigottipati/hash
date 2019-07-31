@@ -8,7 +8,18 @@ has_img_messenger<template>
     </div>
     <div ref="emogiModal" class="dropDownModal">
       <i @click="closeEmojiModal" class="material-icons modalCloseBtn">highlight_off</i>
-      <p>Emoji Upload Modal</p>
+      <p style="color: white;padding: 20px;font-size: 18px; text-align: left;padding-left: 40px;padding-top: 4vh;">Chose Your Emoji</p>
+      <div style="display: flex; flex-direction: row;width: 55vw; height: auto;margin-top: 50px;">
+        <p style="color: #bbb;margin-left: 40px;flex: 1;text-align: left;cursor: pointer;">Smileys</p>
+        <p style="color: #bbb;margin-left: 40px;flex: 1;text-align: left;cursor: pointer;">Animals</p>
+        <p style="color: #bbb;margin-left: 40px;flex: 1;text-align: left;cursor: pointer;">Places</p>
+        <p style="color: #bbb;margin-left: 40px;flex: 1;text-align: left;cursor: pointer;">Objects</p>
+        <p style="color: #bbb;margin-left: 40px;flex: 1;text-align: left;cursor: pointer;">Symbols</p>
+        <p style="color: #bbb;margin-left: 40px;flex: 1;text-align: left;cursor: pointer;">Flags</p>
+      </div>
+      <div style="width: calc(55vw - 100px); margin-left: 40px;height: auto;margin-top: 40px;">
+        
+      </div>
     </div>
     <div class="chatSection" ref="chatSection">
       <div class="sidebar">
@@ -213,7 +224,7 @@ export default {
     },
     openEmojiModal() {
       this.$refs.emogiModal.style.display = "block";
-      this.$refs.chatSection.style.opacity = "0.5";
+      this.$refs.chatSection.style.opacity = "0.2";
     },
     closeEmojiModal() {
       this.$refs.emogiModal.style.display = "none";
@@ -358,21 +369,21 @@ svg {
 .dropDownModal {
   display: none;
   position: absolute;
-  width: 35vw;
-  height: 50vh;
-  right: 32.5vw;
-  top: 25vh;
+  width: 55vw;
+  height: 70vh;
+  right: 22.5vw;
+  top: 15vh;
   background: #37323E;
   z-index: 20;
+  border-radius: 10px;
   -webkit-animation: modalBoxEntrance 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     both;
   animation: modalBoxEntrance 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .modalCloseBtn {
   position: absolute;
-  top: 2vh;
+  top: 4vh;
   right: 2vw;
-  transform: scale(1.5, 1.5);
   cursor: pointer;
   color: white;
 }
