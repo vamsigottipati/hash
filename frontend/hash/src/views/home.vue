@@ -52,14 +52,14 @@
           <div class="fCardFooterUpvotes" style="flex: 2;">
             <span style="text-align: center;display: flex;">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sip-bphc.appspot.com/o/forumImg%2Fpositive-vote.svg?alt=media&token=b6b05ab6-2b4d-4b39-8b38-9fab57caba8c"
+                src="../assets/icons/positive-vote.svg"
                 alt
                 style="width: 25px; height: 25px;margin-left: 30px;transform: translateY(2px);cursor: pointer;"
                 v-if="sPost.uVoted"
                 @click="upVoteInc(index, sPost.id)"
               >
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sip-bphc.appspot.com/o/forumImg%2Fpositive-vote-outline.svg?alt=media&token=9552e1bf-61a5-40c6-b36a-39639f96cc3a"
+                src="../assets/icons/positive-vote-outline.svg"
                 alt
                 style="width: 25px; height: 25px;margin-left: 30px;transform: translateY(2px);cursor: pointer;"
                 v-if="!sPost.uVoted"
@@ -74,14 +74,14 @@
           <div class="fCardFooterDownvotes" style="flex: 2;">
             <span style="text-align: center;display: flex;">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sip-bphc.appspot.com/o/forumImg%2Fnegative-vote.svg?alt=media&token=d47b5417-7352-437e-90b9-8813fcb3c04e"
+                src="../assets/icons/negative-vote.svg"
                 alt
                 style="width: 25px; height: 25px;margin-left: 30px;transform: translateY(2px);cursor: pointer;"
                 v-if="sPost.dVoted"
                 @click="downVoteInc(index, sPost.id)"
               >
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sip-bphc.appspot.com/o/forumImg%2Fnegative-vote-outline.svg?alt=media&token=daf10e8c-f0ab-4c42-8f38-9faa260ca977"
+                src="../assets/icons/negative-vote-outline.svg"
                 alt
                 style="width: 25px; height: 25px;margin-left: 30px;transform: translateY(2px);cursor: pointer;"
                 v-if="!sPost.dVoted"
@@ -148,6 +148,12 @@ export default {
       isHovering1: false,
       isHovering2: false,
       posts: [],
+      like_dislike_images: {
+        like_plain: '../assets/icons/positive-vote-outline.svg',
+        like_fill: '../assets/icons/positive-vote.svg',
+        dislike_plain: '../assets/icons/negative-vote-outline.svg',
+        dislike_fill: '../assets/icons/negative-vote.svg',
+      },
       forumList: [
         {
           forumName: "Tech",
