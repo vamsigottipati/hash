@@ -20,7 +20,7 @@
         <p style="color: #bbb;margin-left: 40px;flex: 1;text-align: left;cursor: pointer;margin-right: 40px;">Flags</p>
       </div>
       <div style="display: flex; flex-direction: row;width: calc(55vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="se in image_loc" src="'../assets/emoji' + se.image" style="width: 20px; height: 20px; margin: 10px;" alt="">
+        <img v-for="(se, i) in image_loc" :key="i" :src="getImageUrl(se.image)" style="width: 20px; height: 20px; margin: 10px;" alt="">
       </div>
     </div>
     <div class="chatSection" ref="chatSection">
@@ -168,9 +168,13 @@
       setEmojiLoc () {
         var vm = this
         for (let index = 0; index < this.all_emoji.length; index++) {
-          vm.image_loc.push({image: vm.all_emoji[index].image})          
+          vm.image_loc.push({image: vm.all_emoji[index].image})         
         }
-        console.log(vm.image_loc)
+      },
+      getImageUrl(a) {
+        var images = require.context('../assets/emoji', false, /\.png$/)
+        console.log(images('./' + a ))
+        return images('./' + a )
       },
       openChat(e, username) {
         var vm = this;
