@@ -248,3 +248,21 @@ fs.writeFile("./emoji_json_files//food.json", JSON.stringify(f_d_emoji), (err) =
     console.log("File has been created");
 });
 
+//  create a file for easy usage in scss file
+
+var scss_json_obj = []
+
+for (let index = 0; index < final_array.length; index++) {
+    var x = final_array[index].unified.toLowerCase()
+    scss_json_obj.push(x)
+}
+
+console.log(scss_json_obj)
+
+fs.writeFile("./emoji_json_files//scss.json", JSON.stringify(scss_json_obj), (err) => {
+    if (err) {
+        console.error(err);
+        return;
+    };
+    console.log("File has been created");
+});
