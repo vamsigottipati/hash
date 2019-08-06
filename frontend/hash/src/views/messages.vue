@@ -115,7 +115,7 @@
           </div>
         </div>
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
-          <div @click="openEmojiModal" class="emoji-1f385-1f3fb"></div>
+          <img @click="openEmojiModal" class="emoji-1f600" style="width: 25px; height: 25px; align-self: center;margin-left: 20px;cursor: pointer; margin-right: 20px;" />
           <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text"
             style="text-align: left;padding-left:40px; padding-right: 40px;" class="chatInputText">
           <i class="material-icons chatInputIcon" @click="sendMsg">send</i>
@@ -272,7 +272,7 @@
 
 <style scoped>
 
-  @import '../main.css';
+  @import '../assets/main.css';
 
   .msgPageBody {
     word-wrap: break-word;
