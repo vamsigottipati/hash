@@ -115,10 +115,11 @@
           </div>
         </div>
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
-          <img @click="openEmojiModal" class="emoji-1f600" style="width: 25px; height: 25px; align-self: center;margin-left: 20px;cursor: pointer; margin-right: 20px;" />
+          <img @click="openEmojiModal" class="emoji-1f600" style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;margin-left: 30px;" />
           <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text"
-            style="text-align: left;padding-left:40px; padding-right: 40px;" class="chatInputText">
+            style="text-align: left;padding-left:40px; padding-right: 40px;margin-right: 30px;" placeholder="The message goes here .... " class="chatInputText">
           <i class="material-icons chatInputIcon" @click="sendMsg">send</i>
+          <!-- <img @click="openFileModal" class="emoji-1f4ce" style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;" /> -->
           <i class="material-icons chatInputIcon" @click="openFileModal">attach_file</i>
         </div>
       </div>
@@ -350,25 +351,21 @@
   }
 
   .chatInputIcon {
-    flex: 1;
-    text-align: center;
-    transform: translateY(2.5vh);
-    color: #2c2c2c;
+    align-self: center;
+    color: #37323E;
     cursor: pointer;
-  }
-
-  .chatInputIcon:nth-of-type(3) {
-    text-align: left;
+    margin-right: 30px;
   }
 
   .chatInputText {
     all: unset;
-    height: 5vh;
+    height: 5.5vh;
     background: #ddd;
     flex: 8;
-    margin-top: 1.5vh;
+    align-self: center;
     border-radius: 100px;
     text-align: center;
+    font-size: 14px;
   }
 
   .chatBody {
