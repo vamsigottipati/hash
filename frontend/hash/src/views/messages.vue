@@ -10,40 +10,61 @@
       <i @click="closeEmojiModal" class="material-icons modalCloseBtn">highlight_off</i>
       <p style="color: white;padding: 20px;font-size: 18px; text-align: left;padding-left: 40px;padding-top: 4vh;">Chose
         Your Emoji</p>
-      <div style="display: flex; flex-direction: row;width: calc(60vw-80px); height: auto;margin-top: 30px; margin-right: 40px;">
+      <div
+        style="display: flex; flex-direction: row;width: calc(60vw-80px); height: auto;margin-top: 30px; margin-right: 40px;">
         <p @click="changeEmojiDisp('all')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">All</p>
-        <p @click="changeEmojiDisp('smileys')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Smileys</p>
-        <p @click="changeEmojiDisp('animals')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Animals</p>
+        <p @click="changeEmojiDisp('smileys')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Smileys
+        </p>
+        <p @click="changeEmojiDisp('animals')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Animals
+        </p>
         <p @click="changeEmojiDisp('places')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Places</p>
-        <p @click="changeEmojiDisp('objects')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Objects</p>
-        <p @click="changeEmojiDisp('symbols')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Symbols</p>
+        <p @click="changeEmojiDisp('objects')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Objects
+        </p>
+        <p @click="changeEmojiDisp('symbols')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Symbols
+        </p>
         <p @click="changeEmojiDisp('flags')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">Flags</p>
         <p @click="changeEmojiDisp('food')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">food</p>
         <!-- <p @click="changeEmojiDisp('activities')" style="color: #bbb;flex: 1;text-align: center;cursor: pointer;">activities</p> -->
       </div>
-      <div v-if="emoji_active == 'all'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in all_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'all'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in all_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
-      <div v-if="emoji_active == 'smileys'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in smiley_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'smileys'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in smiley_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
-      <div v-if="emoji_active == 'animals'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in animals_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'animals'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in animals_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
-      <div v-if="emoji_active == 'places'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in places_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'places'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in places_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
-      <div v-if="emoji_active == 'objects'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in objects_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'objects'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in objects_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
-      <div v-if="emoji_active == 'symbols'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in symbols_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'symbols'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in symbols_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
-      <div v-if="emoji_active == 'flags'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in flags_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.name)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'flags'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in flags_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.name)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
-      <div v-if="emoji_active == 'food'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
-        <img v-for="(se, i) in food_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
+      <div v-if="emoji_active == 'food'"
+        style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
+        <img v-for="(se, i) in food_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)"
+          style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
       </div>
       <!-- <div v-if="emoji_active == 'activities'" style="display: flex; flex-direction: row;width: calc(60vw - 100px); height: 50vh;background: transparent;margin-left: 40px; margin-bottom: 50px;margin-top: 30px;flex-wrap: wrap;overflow: auto;">
         <img v-for="(se, i) in activities_emoji" :key="i" :src="getImageUrl(se.image)" @click="addEmoji(se.unified)" style="width: 25px; height: 25px; margin: 20px;cursor: pointer" alt="">
@@ -113,11 +134,16 @@
             <img v-if="singleChat.img != 'null' && singleChat.senderId != yourId" :src="singleChat.img"
               style="margin-top:15px;" alt>
           </div>
+          <div v-for="a in test" style="margin: 10px;">
+            <span v-html="asd(a)" style="display: flex; flex-direction: row;padding: 7px;"></span>
+          </div>
         </div>
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
-          <img @click="openEmojiModal" class="emoji-1f600" style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;margin-left: 30px;" />
+          <i @click="openEmojiModal" class="emoji-1f60e "
+            style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;margin-left: 30px;background-size: 25px 25px;"></i>
           <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text"
-            style="text-align: left;padding-left:40px; padding-right: 40px;margin-right: 30px;" placeholder="The message goes here .... " class="chatInputText">
+            style="text-align: left;padding-left:40px; padding-right: 40px;margin-right: 30px;"
+            placeholder="The message goes here .... " class="chatInputText">
           <i class="material-icons chatInputIcon" @click="sendMsg">send</i>
           <!-- <img @click="openFileModal" class="emoji-1f4ce" style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;" /> -->
           <i class="material-icons chatInputIcon" @click="openFileModal">attach_file</i>
@@ -176,15 +202,82 @@
         food_emoji: food_emoji,
         activities_emoji: activities_emoji,
         image_loc: [],
-        emoji_active: 'all'
+        emoji_active: 'all',
+        test: [
+          {
+            text: 'some data dasuduiasuidaisud uiahsuidh 1',
+            senderId: 'asdasdasdasd',
+            img: 'null',
+            emoji_data: [
+              {
+                position: 2,
+                class: 'emoji-1f60e'
+              },
+              {
+                position: 12,
+                class: 'emoji-1f60e'
+              }
+            ]
+          },
+          {
+            text: 'some data asdasd jiabsid ashda sdasdasd asdiasda sddiasd 2',
+            senderId: 'asdasdasdasd',
+            img: 'null',
+            emoji_data: [
+              {
+                position: 12,
+                class: 'emoji-1f60e'
+             },
+             {
+                position: 25,
+                class: 'emoji-1f60e'
+             },
+            ]
+          },
+          {
+            text: 'some asdsaasdas asd asnda sodna sdoiajsd aosjida saijis dasdopjpos fasjdpiasjdjaspoasdpoajspdasd data3',
+            senderId: 'asdasdasdasd',
+            img: 'null',
+            emoji_data: [
+              {
+                position: 5,
+                class: 'emoji-1f60e'
+             },
+             {
+                position: 12,
+                class: 'emoji-1f60e'
+             },
+            ]
+          },
+      ]
       };
     },
     mounted: function () {
-      this.setData();
-      this.listenToEventBus();
+      this.setData()
+      this.listenToEventBus()
       this.setEmojiLoc()
+      this.setTestText()
     },
     methods: {
+      setTestText() {
+        var vm = this
+
+      },
+      asd(d) {
+        var main_text = d.text
+        var temp = ``
+        var prev_pos = 0
+        for (let index = 0; index < d.emoji_data.length; index++) {
+          var i = d.emoji_data[index].position
+          var t = main_text.substring(prev_pos, i)
+          main_text = d.text
+          prev_pos = i
+          temp = temp + `${t} <div class="${d.emoji_data[index].class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div>`
+        }
+        temp = temp + `${main_text.substring(prev_pos, main_text.length)}`
+        return temp
+        // return `asdasdas <div class="${d.emoji_data.class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div> asdasdasdasdasd asdasdas <div class="${d.emoji_data.class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div> asdasdasdasdasd asdasdas <div class="${d.emoji_data.class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div> asdasdasdasdasd asdasdas <div class="${d.emoji_data.class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div> asdasdasdasdasd`
+      },
       openFileModal() {
         this.$refs.fileModal.style.display = "block";
         this.$refs.chatSection.style.opacity = "0.5";
@@ -202,15 +295,15 @@
           vm.fList = temp2;
         });
       },
-      setEmojiLoc () {
+      setEmojiLoc() {
         var vm = this
         for (let index = 0; index < this.all_emoji.length; index++) {
-          vm.image_loc.push({image: vm.all_emoji[index].image})         
+          vm.image_loc.push({ image: vm.all_emoji[index].image })
         }
       },
       getImageUrl(a) {
         var images = require.context('../assets/emoji', false, /\.png$/)
-        return images('./' + a )
+        return images('./' + a)
       },
       openChat(e, username) {
         var vm = this;
@@ -260,10 +353,10 @@
           }, 100);
         }
       },
-      changeEmojiDisp (a) {
+      changeEmojiDisp(a) {
         this.emoji_active = a
       },
-      addEmoji (q) {
+      addEmoji(q) {
         alert(q)
         // this.chatInput = this.chatInput + `<i class="${q}"></i>`
       }
@@ -272,11 +365,17 @@
 </script>
 
 <style scoped>
-
   @import '../assets/main.css';
 
   .msgPageBody {
     word-wrap: break-word;
+  }
+
+  .inPEmoji {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    margin-left: 10px;
   }
 
   .chatSection {
