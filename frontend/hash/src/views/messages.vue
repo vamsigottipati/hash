@@ -123,20 +123,26 @@
             <div class="selfMsg"
               style="align-self: flex-end;height: auto;color: white;background: rgb(55, 50, 62, 0.7);padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;max-width: 45%;text-align: left;"
               v-if="singleChat.senderId == yourId">
-              <div v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;" v-html="insertEmoji(singleChat.text)"></div>
+              <!-- <div v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;"> -->
+                <singleMsg v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;" :message_array="setMsgData(singleChat)" />
+              <!-- </div> -->
             </div>
             <img :src="singleChat.img" v-if="singleChat.img != 'null' && singleChat.senderId == yourId" alt>
             <div class="otherMsg"
               style="align-self: flex-start;height: auto;color: #37323E;background: #ddd;padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;max-width: 45%;text-align: left;"
               v-if="singleChat.senderId != yourId">
-              <div v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;" v-html="insertEmoji(singleChat.text)"></div>
+              <div v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;">
+
+              </div>
             </div>
             <img v-if="singleChat.img != 'null' && singleChat.senderId != yourId" :src="singleChat.img"
               style="margin-top:15px;" alt>
           </div>
-          <div v-for="a in test" style="margin: 10px;">
-            <span v-html="insertEmoji(a)" style="display: flex; flex-direction: row;padding: 7px;"></span>
-          </div>
+          <singleMsg :message_array="setMsgData(test[0])" />
+
+          <!-- <div v-for="a in test" style="margin: 10px;">
+            <span style="display: flex; flex-direction: row;padding: 7px;">{{insertEmoji(a)}}</span>
+          </div> -->
         </div>
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
           <i @click="openEmojiModal" class="emoji-1f60e "
@@ -172,11 +178,13 @@
   import places_emoji from '../../emoji_json_files/travel.json'
   import activities_emoji from '../../emoji_json_files/activities.json'
   import flags_emoji from '../../emoji_json_files/flags.json'
+  import singleMsg from '../components/singleMsg'
 
   export default {
     name: "messages",
     components: {
-      navBar
+      navBar,
+      singleMsg
     },
     data() {
       return {
@@ -227,11 +235,11 @@
               {
                 position: 12,
                 class: 'emoji-1f60e'
-             },
-             {
+              },
+              {
                 position: 25,
                 class: 'emoji-1f60e'
-             },
+              },
             ]
           },
           {
@@ -242,14 +250,14 @@
               {
                 position: 5,
                 class: 'emoji-1f60e'
-             },
-             {
+              },
+              {
                 position: 12,
                 class: 'emoji-1f60e'
-             },
+              },
             ]
           },
-      ]
+        ]
       };
     },
     mounted: function () {
@@ -263,22 +271,52 @@
         var vm = this
 
       },
-      insertEmoji(d) {
-        var main_text = d.text
-        var temp = d.text
+      // insertEmoji(d) {
+      //   var main_text = d.text
+      //   var temp = d.text
+      //   var prev_pos = 0
+      //   if (d.emoji_data) {
+      //     temp = ``
+      //     for (let index = 0; index < d.emoji_data.length; index++) {
+      //       var i = d.emoji_data[index].position
+      //       var t = main_text.substring(prev_pos, i)
+      //       main_text = d.text
+      //       prev_pos = i
+      //       temp = temp + `${t} <div class="${d.emoji_data[index].class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div>`
+      //     }
+      //     temp = temp + `${main_text.substring(prev_pos, main_text.length)}`
+      //   }
+      //   return temp
+      // },
+      setMsgData(msg_data) {
+        var vm = this
+        var arr = []
         var prev_pos = 0
-        if (d.emoji_data) {
-          temp = ``
-          for (let index = 0; index < d.emoji_data.length; index++) {
-            var i = d.emoji_data[index].position
-            var t = main_text.substring(prev_pos, i)
-            main_text = d.text
-            prev_pos = i
-            temp = temp + `${t} <div class="${d.emoji_data[index].class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div>`
+        if (Object.keys(msg_data).indexOf("emoji_data") > -1) {
+          for (let index = 0; index < msg_data.emoji_data.length; index++) {
+            var x = msg_data.emoji_data[index].position
+            var text_obj = {
+              'value': msg_data.text.substring(prev_pos, x),
+              'type': 'text'
+            }
+            var emoji_obj = {
+              'value': msg_data.emoji_data[index].class,
+              'type': 'emoji'
+            }
+            arr.push(text_obj)
+            arr.push(emoji_obj)
+            prev_pos = x
           }
-          temp = temp + `${main_text.substring(prev_pos, main_text.length)}`
+          arr.push({
+            'value': msg_data.text.substring(prev_pos, msg_data.text.length),
+            'type': 'text'
+          })
+          // this.message_array = arr
+          return arr
+        } else {
+          // this.message_array = msg_data.text
+          return msg_data.text
         }
-        return temp
       },
       openFileModal() {
         this.$refs.fileModal.style.display = "block";
