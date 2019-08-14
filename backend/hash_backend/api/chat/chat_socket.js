@@ -15,7 +15,8 @@ const csocket = io => {
             io.in(data[0][1]).emit("newmsg", {
                 text: data[0][0],
                 senderId: data[0][2],
-                img: ''
+                img: '',
+                emoji_data: []
             })
             chatmodel.findOne({
                     _id: data[0][1]
@@ -25,7 +26,8 @@ const csocket = io => {
                         resp.messages.push({
                             "senderId": data[0][2],
                             "text": data[0][0],
-                            "img": "null"
+                            "img": "null",
+                            "emoji_data": []
                         })
 
                         // console.log(resp.comments)

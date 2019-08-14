@@ -131,18 +131,12 @@
             <div class="otherMsg"
               style="align-self: flex-start;height: auto;color: #37323E;background: #ddd;padding: 5px 40px 0px 40px;margin:15px 30px 15px 30px;border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;max-width: 45%;text-align: left;"
               v-if="singleChat.senderId != yourId">
-              <div v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;">
-
-              </div>
+              <singleMsg v-if="singleChat.text && singleChat.text != '\n'" style="padding: 5px;" :message_array="setMsgData(singleChat)" />
             </div>
             <img v-if="singleChat.img != 'null' && singleChat.senderId != yourId" :src="singleChat.img"
               style="margin-top:15px;" alt>
           </div>
-          <singleMsg :message_array="setMsgData(test[0])" />
-
-          <!-- <div v-for="a in test" style="margin: 10px;">
-            <span style="display: flex; flex-direction: row;padding: 7px;">{{insertEmoji(a)}}</span>
-          </div> -->
+          <!-- <singleMsg :message_array="setMsgData(test[0])" /> -->
         </div>
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
           <i @click="openEmojiModal" class="emoji-1f60e "
