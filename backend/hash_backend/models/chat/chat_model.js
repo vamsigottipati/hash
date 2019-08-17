@@ -2,7 +2,7 @@ let mongoose = require('mongoose')
 const timestamp = require('mongoose-timestamp')
 const server = '127.0.0.1:27017'
 const database = 'sipbackend'
-mongoose.connect(`mongodb://${server}/${database}`, {
+mongoose.connect("mongodb+srv://hell_rocker:vamsi_bits439@cluster0-mfvum.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true
 });
 let chat_schema = new mongoose.Schema({
