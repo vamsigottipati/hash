@@ -141,9 +141,10 @@
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
           <i @click="openEmojiModal" class="emoji-1f60e "
             style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;margin-left: 30px;background-size: 25px 25px;"></i>
-          <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text"
+          <!-- <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text"
             style="text-align: left;padding-left:40px; padding-right: 40px;margin-right: 30px;"
-            placeholder="The message goes here .... " class="chatInputText">
+            placeholder="The message goes here .... " class="chatInputText"> -->
+          <div v-on:keyup.enter="sendMsg" ref="chatInput" contenteditable="true" style="text-align: left;padding: 12px 40px 12px 40px;font-size: 15px;margin-right: 30px;flex: 8; background: #ddd; color: black;height: auto;align-self: center;border-radius: 1000000px;display: flex; flex-direction: row;"></div>
           <i class="material-icons chatInputIcon" @click="sendMsg">send</i>
           <!-- <img @click="openFileModal" class="emoji-1f4ce" style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;" /> -->
           <i class="material-icons chatInputIcon" @click="openFileModal">attach_file</i>
@@ -263,25 +264,10 @@
     methods: {
       setTestText() {
         var vm = this
-
       },
-      // insertEmoji(d) {
-      //   var main_text = d.text
-      //   var temp = d.text
-      //   var prev_pos = 0
-      //   if (d.emoji_data) {
-      //     temp = ``
-      //     for (let index = 0; index < d.emoji_data.length; index++) {
-      //       var i = d.emoji_data[index].position
-      //       var t = main_text.substring(prev_pos, i)
-      //       main_text = d.text
-      //       prev_pos = i
-      //       temp = temp + `${t} <div class="${d.emoji_data[index].class}" style="width: 20px; height: 20px; align-self: center; margin-left: 5px;margin-right: 5px; padding: 5px;background-size: 20px 20px;"> </div>`
-      //     }
-      //     temp = temp + `${main_text.substring(prev_pos, main_text.length)}`
-      //   }
-      //   return temp
-      // },
+      remInitMsg () {
+        this.$refs.initMsg.innerText = ''
+      },
       setMsgData(msg_data) {
         var vm = this
         var arr = []
@@ -401,9 +387,13 @@
       changeEmojiDisp(a) {
         this.emoji_active = a
       },
-      addEmoji(q) {
-        alert(q)
-        // this.chatInput = this.chatInput + `<i class="${q}"></i>`
+      addEmoji(e) {
+        var l = 'emoji-' + e
+        var x = `<img src="${process.env.BASE_URL}emoji/${e}.png" style="width: 20px; height: 20px;" />`
+        var y = `&nbsp;`
+        this.$refs.chatInput.innerHTML = this.$refs.chatInput.innerHTML + x
+        this.$refs.chatInput.innerHTML = this.$refs.chatInput.innerHTML + y
+        this.closeEmojiModal()
       }
     }
   };
@@ -421,6 +411,12 @@
     height: 20px;
     background-size: 20px 20px;
     margin-left: 10px;
+  }
+  div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+    content: attr(data-placeholder);
+    float: left;
+    margin-left: 2px;
+    color: #b3b3b3;
   }
 
   .chatSection {
@@ -452,7 +448,9 @@
     top: 0px;
     background: #f1f1f1;
   }
-
+  [contenteditable]:focus {
+    outline: 0px solid transparent;
+  }
   .chatHeader {
     position: relative;
     height: 9vh;

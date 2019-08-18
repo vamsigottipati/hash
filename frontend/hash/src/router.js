@@ -12,7 +12,6 @@ import authGaurd from './authGaurd'
 import singlePost from './views/singlePost'
 import test from './views/test'
 import test2 from './views/test2'
-import singleMsg from './components/singleMsg'
 
 Vue.use(Router)
 
@@ -23,12 +22,6 @@ export default new Router({
     {
       path: '*',
       redirect: 'home'
-    },
-    {
-      path: '/singleMsg',
-      name: 'singleMsg',
-      component: singleMsg,
-      beforeEnter: authGaurd
     },
     {
       path: '/home',
