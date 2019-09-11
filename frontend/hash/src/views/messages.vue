@@ -136,17 +136,13 @@
             <img v-if="singleChat.img != 'null' && singleChat.senderId != yourId" :src="singleChat.img"
               style="margin-top:15px;" alt>
           </div>
-          <!-- <singleMsg :message_array="setMsgData(test[0])" /> -->
+          <!-- <singleMsg :message_array="setMsgData(chatMsg[chatMsg.length-1])" /> -->
         </div>
         <div class="chatInput" v-if="!this.chatLoading && this.userSelected">
           <i @click="openEmojiModal" class="emoji-1f60e "
             style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;margin-left: 30px;background-size: 25px 25px;"></i>
-          <!-- <input v-on:keyup.enter="sendMsg" v-model="chatInput" type="text"
-            style="text-align: left;padding-left:40px; padding-right: 40px;margin-right: 30px;"
-            placeholder="The message goes here .... " class="chatInputText"> -->
-          <div v-on:keyup.enter="sendMsg" ref="chatInput" contenteditable="true" style="text-align: left;padding: 12px 40px 12px 40px;font-size: 15px;margin-right: 30px;flex: 8; background: #ddd; color: black;height: auto;align-self: center;border-radius: 1000000px;display: flex; flex-direction: row;"></div>
-          <i class="material-icons chatInputIcon" @click="sendMsg">send</i>
-          <!-- <img @click="openFileModal" class="emoji-1f4ce" style="width: 25px; height: 25px; align-self: center;cursor: pointer; margin-right: 30px;" /> -->
+          <div id="chatInputCont" v-on:keyup.enter.prevent="sendMsg('enter')" ref="chatInputCont" contenteditable="true" style="text-align: left;padding: 12px 40px 12px 40px;font-size: 15px;margin-right: 30px;flex: 8; background: #ddd; color: black;height: auto;align-self: center;border-radius: 1000000px;display: flex; flex-direction: row;"></div>
+          <i class="material-icons chatInputIcon" @click="sendMsg('normal')">send</i>
           <i class="material-icons chatInputIcon" @click="openFileModal">attach_file</i>
         </div>
       </div>
@@ -194,6 +190,12 @@
         temp: [],
         chatHeads: {},
         fList: [],
+        currentMsgData: {
+          text: '',
+          senderId: this.yourId,
+          img: 'null',
+          emoji_data: []
+        },
         chatMsg: [],
         all_emoji: all_emoji,
         smiley_emoji: smiley_emoji,
@@ -283,6 +285,9 @@
               'value': msg_data.emoji_data[index].class,
               'type': 'emoji'
             }
+            console.log(text_obj)
+            console.log(emoji_obj);
+            
             arr.push(text_obj)
             arr.push(emoji_obj)
             prev_pos = x
@@ -292,9 +297,11 @@
             'type': 'text'
           })
           // this.message_array = arr
+          console.log(arr)
           return arr
         } else {
           // this.message_array = msg_data.text
+          console.log('no emoji')
           return msg_data.text
         }
       },
@@ -305,6 +312,8 @@
       listenToEventBus() {
         var vm = this;
         EventBus.$on("recv_msg", r => {
+          console.log(r.emoji_data)
+          console.log(typeof(r.emoji_data[1]))
           vm.chatMsg.push(r);
         });
       },
@@ -333,6 +342,7 @@
         var a = this.yourId;
         var x = a > e ? a + e : e + a;
         vm.threadId = x;
+        console.log(vm.threadId)
         this.$http
           .get("http://localhost:8080/api/chat/" + x)
           .then(Response => {
@@ -344,6 +354,12 @@
         if (el.length > 0) {
           el[el.length - 1].scrollIntoView(false);
         }
+        setTimeout(() => {
+          var el = document.querySelectorAll(".msgCont");
+          if (el.length > 0) {
+            el[el.length - 1].scrollIntoView(false);
+          }
+        }, 100);
       },
       closeFileModal() {
         this.$refs.fileModal.style.display = "none";
@@ -357,25 +373,35 @@
         this.$refs.emogiModal.style.display = "none";
         this.$refs.chatSection.style.opacity = "1";
       },
-      sendMsg() {
-        if (this.chatInput && this.chatInput != '\n') {
-          var emoji_data = [
-            {
-              position: 5,
-              class: 'emoji-1f60e'
-            },
-            {
-              position: 12,
-              class: 'emoji-1f60e'
-            },
-          ]
-          EventBus.$emit("sendMessage", [
-            this.chatInput,
-            this.threadId,
-            this.yourId,
-            emoji_data
-          ]);
-          this.chatInput = "";
+      sendMsg(e) {
+        if (e == 'enter') {
+          this.$refs.chatInputCont.lastChild.remove()
+          var text2Send = this.$refs.chatInputCont.textContent
+          this.currentMsgData.text = text2Send
+          var temp = this.currentMsgData
+          EventBus.$emit("sendMessage", [this.currentMsgData.text, this.threadId, this.yourId, this.currentMsgData.emoji_data])
+          this.currentMsgData = {
+            text: '',
+            senderId: this.yourId,
+            img: 'null',
+            emoji_data: []
+          }
+          setTimeout(() => {
+            var el = document.querySelectorAll(".selfMsg");
+            if (el.length > 0) {
+              el[el.length - 1].scrollIntoView(false);
+            }
+          }, 100);
+        } else {
+          var text2Send = this.$refs.chatInputCont.textContent
+          this.currentMsgData.text = text2Send
+          EventBus.$emit("sendMessage", [this.currentMsgData.text, this.threadId, this.yourId, this.currentMsgData.emoji_data])
+          this.currentMsgData = {
+            text: '',
+            senderId: this.yourId,
+            img: 'null',
+            emoji_data: []
+          }
           setTimeout(() => {
             var el = document.querySelectorAll(".selfMsg");
             if (el.length > 0) {
@@ -388,12 +414,23 @@
         this.emoji_active = a
       },
       addEmoji(e) {
-        var l = 'emoji-' + e
-        var x = `<img src="${process.env.BASE_URL}emoji/${e}.png" style="width: 20px; height: 20px;" />`
+        var l = e
+        var x = `<img src="${process.env.BASE_URL}emoji/${e}.png" style="width: 20px; height: 20px;margin-left: 7px; margin-right: 7px;" />`
         var y = `&nbsp;`
-        this.$refs.chatInput.innerHTML = this.$refs.chatInput.innerHTML + x
-        this.$refs.chatInput.innerHTML = this.$refs.chatInput.innerHTML + y
+        this.$refs.chatInputCont.innerHTML = this.$refs.chatInputCont.innerHTML + x
+        this.$refs.chatInputCont.innerHTML = this.$refs.chatInputCont.innerHTML + y
         this.closeEmojiModal()
+        var vm = this
+        var len2Push = 0
+        if (this.$refs.chatInputCont.textContent.length == 0) {
+          len2Push = this.$refs.chatInputCont.textContent.length
+        } else {
+          len2Push = this.$refs.chatInputCont.textContent.length - 1
+        }
+        this.currentMsgData.emoji_data.push({
+          position: len2Push,
+          class: l
+        })
       }
     }
   };

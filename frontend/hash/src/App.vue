@@ -99,8 +99,8 @@ export default {
       EventBus.$on("getUserChatDetails", x => {
         vm.socket.emit("room_name", x);
       });
-      EventBus.$on("sendMessage", (e, x, s) => {
-        vm.socket.emit("new_message", [e, x, s]);
+      EventBus.$on("sendMessage", (e, x, s, y) => {
+        vm.socket.emit("new_message", [e, x, s, y]);
       });
       EventBus.$on("createPost", data => {
         vm.socket.emit("post", data);
