@@ -392,6 +392,7 @@
               el[el.length - 1].scrollIntoView(false);
             }
           }, 100);
+          this.$refs.chatInputCont.innerHTML = ''
         } else {
           var text2Send = this.$refs.chatInputCont.textContent
           this.currentMsgData.text = text2Send
